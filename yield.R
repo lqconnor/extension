@@ -6,7 +6,7 @@ getwd()
 Sys.setenv(NASSQS_TOKEN = readLines(".secret"))
 
 #Check if packages installed, install missing packages and load all installed packages
-pckgs <- c("tidyverse", "rnassqs", "stargazer", "ggplot2", "tseries")
+pckgs <- c("stringi", "tidyverse", "rnassqs", "stargazer", "ggplot2", "tseries")
 lapply(pckgs, FUN = function(x) {
   if (!require(x, character.only = TRUE)) {
     install.packages(x, dependencies = TRUE)
