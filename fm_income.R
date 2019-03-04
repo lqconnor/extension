@@ -21,12 +21,12 @@ fm_inc <- read_csv("../../Data/farmincome_wealthstatisticsdata_november2018.csv"
 debt <- filter(fm_inc,State == "US", 
        str_detect(VariableDescriptionTotal, "[Dd]ebt, all, excl. operator dwelling"),
        VariableDescriptionPart1 == "Farm sector debt",
-       Year >= 1985 & Year <= 2016) %>%
+       Year >= 2004 & Year <= 2016) %>%
 rename(gdp_df = ChainType_GDP_Deflator) %>%
 mutate(debts = Amount/gdp_df)
 
 # Modified Palmer Drought Index Data (PMDI) -----------------------------------------------------------------------------------
-pmdi_files <- c(2016:1985)
+pmdi_files <- c(2016:2004)
 
 # read files into dataframe list
 pdmi <- pmdi_files %>%
@@ -42,7 +42,9 @@ pdmi <- bind_rows(pdmi) %>%
 
 # plots ----------------------------
 ggplot() +
-  geom_line(data = debt, aes(x=Year, y=debts, group = 1), color = "black") +
+  geom_line(data = debt, aes(x=Year, y=debts, group = 1), color = "black")
+
+ggplot() +
   geom_line(data = pdmi, aes(x=year, y=m_pdmi*4e6, group = 1), color = "red")
 
 cor(pdmi$m_pdmi,debt$debts)
