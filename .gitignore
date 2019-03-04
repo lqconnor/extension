@@ -3,6 +3,5 @@
 .RData
 .Ruserdata
 Python/
-yield_US.csv
-a_rate.csv
-yield_LA.csv
+*.csv
+*.png
