@@ -51,3 +51,5 @@ cor(pdmi$m_pdmi,debt$debts)
 
 run <- lm(log(debt$debts) ~ pdmi$drought)
 summary(run)
+
+# check to see how revert works
