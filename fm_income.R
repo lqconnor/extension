@@ -19,21 +19,12 @@ fm_inc <- read_csv("../Data/farmincome_wealthstatisticsdata_march2019.csv")
 
 # debt -----------------------------------
 income <- filter(fm_inc,State == "US", 
-       str_detect(VariableDescriptionTotal, "Net cash income"),
-       #VariableDescriptionPart1 == "Farm sector debt",
-       Year >= 2010) %>%
-rename(gdp_df = ChainType_GDP_Deflator) %>%
-mutate(debts = Amount/gdp_df)
+                   str_detect(VariableDescriptionTotal, "Net cash income|Net farm income|receipts value, all commodities"),
+                   Year >= 2010) %>%
+  select(Year, State, VariableDescriptionTotal, Amount) %>%
+  spread(VariableDescriptionTotal, Amount)
 
-
-# plots ----------------------------
-ggplot() +
-  geom_line(data = debt, aes(x=Year, y=debts, group = 1), color = "black")
-
-ggplot() +
-  geom_line(data = pdmi, aes(x=year, y=m_pdmi*4e6, group = 1), color = "red")
-
-cor(pdmi$m_pdmi,debt$debts)
-
-run <- lm(log(debt$debts) ~ pdmi$drought)
-summary(run)
+ggplot(income) +
+  geom_line(aes(x = Year, y = `Net cash income`), color = "black") +
+  geom_line(aes(x = Year, y = `Net farm income`), color = "blue") +
+  geom_line(aes(x = Year, y = `Cash receipts value, all commodities , all`), color = "red")
