@@ -62,7 +62,7 @@ debt <- filter(fm_inc,State == "US",
 
 # Farm Income -----------------------------------
 income <- filter(fm_inc, str_detect(State, "US|LA"), 
-               str_detect(VariableDescriptionTotal, "Net [Ff]arm income$"),
+               str_detect(VariableDescriptionTotal, "Net [cC]ash income$"),
                #VariableDescriptionPart1 == "Farm sector debt",
                Year >= 2012) %>%
   mutate(year = as.factor(Year)) %>%
@@ -82,6 +82,30 @@ p <- ggplot(income, aes(x = State, y = log(Amount))) +
        axis.ticks.x=element_blank())
 
 p
+
+# Animal Products Receipts -----------------------------------------------
+income <- filter(fm_inc, str_detect(State, "US"), 
+                 str_detect(VariableDescriptionTotal, "[Rr]eceipts"),
+                 str_detect(VariableDescriptionTotal, "poultry|cattle|hogs|broilers|dairy"),
+                 #VariableDescriptionPart1 == "Farm sector debt",
+                 Year >= 2016 & Year <= 2019) %>%
+  mutate(year = as.factor(Year)) %>%
+  rename(gdp_df = ChainType_GDP_Deflator) %>%
+  mutate(debts = Amount/gdp_df)
+
+p <- ggplot(income, aes(x = VariableDescriptionPart1, y = Amount)) +
+  geom_bar(
+    aes(color = year, fill = year),
+    stat = "identity", position = position_dodge(0.8),
+    width = 0.7
+  ) +
+  scale_fill_brewer(palette="Blues") +
+  scale_colour_brewer(palette="Blues") +
+  theme(axis.title.x=element_blank()) +
+  labs(y = "US Dollars")
+
+p
+
 
 ggplot(income, aes(x = year, y = Amount,
                       group = State,
