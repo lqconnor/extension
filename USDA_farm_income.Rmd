@@ -50,5 +50,5 @@ p <- ggplot(receipts, aes(x = VariableDescriptionPart1, y = Amount)) +
   theme(axis.title.x=element_blank()) +
   labs(y = "US Dollars")
 
-p
+p + theme(legend.position="bottom")
 ```
