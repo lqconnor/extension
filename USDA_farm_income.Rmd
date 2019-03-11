@@ -19,6 +19,7 @@ The USDA released its projections for 2019 national farm incomes on March 6^th^.
 The USDA farm income forecasts show that national farm incomes are expected to increase by 8%. Figure 1 below shows the behavior net farm income for the last few years. 
 
 ```{r, include = FALSE}
+source("fm_income.R")
 fm_inc <- read_csv("../Data/farmincome_wealthstatisticsdata_march2019.csv") %>%
   filter(State == "US", 
          str_detect(VariableDescriptionTotal, "Net farm income$"),
