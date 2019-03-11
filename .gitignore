@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 Python/
+<<<<<<< HEAD
 yield_LA.csv
 yield_US.csv
 a_rate.csv
@@ -12,3 +13,10 @@ a_rate.csv
 *.html
 *.csv
 
+=======
+*.csv
+*.png
+*.pdf
+*.html
+*.docx
+>>>>>>> report
