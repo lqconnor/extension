@@ -1,0 +1,47 @@
+---
+title: "USDA Farm Income Forecasts"
+author: "Lawson Connor"
+date: "March 20, 2018"
+output: 
+ html_document:
+    reference_html: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+The USDA released its projections for 2019 national farm incomes on March 6^th^. The forecasts say that the USDA expects an increase in farm incomes for the 2019 calendar year.State level estiamtes for 2018 are expected in August of 2018 and estimates for the 2019 year will be released in August of 2020. The national picture does give some insight into the expected performance of the Louisiana farm economy this year. 
+
+
+### National farm income outlook
+The USDA farm income forecasts show that national farm incomes are expected to increase by 8%. Figure 1 below shows the behavior net farm income for the last few years. 
+
+```{r, include = FALSE}
+source("fm_income.R")
+```
+
+```{r, echo=FALSE}
+fm_inc <- filter(fm_inc, Year >= 2010)
+
+ggplot() +
+  geom_line(data = fm_inc, aes(x=year, y=Income, group = 1), color = "black")
+```
+
+Cash receipts for corn, wheat and 
+
+```{r, echo=FALSE}
+p <- ggplot(receipts, aes(x = VariableDescriptionPart1, y = Amount)) +
+  geom_bar(
+    aes(color = year, fill = year),
+    stat = "identity", position = position_dodge(0.8),
+    width = 0.7
+  ) +
+  scale_fill_brewer(palette="Blues") +
+  scale_colour_brewer(palette="Blues") +
+  theme(axis.title.x=element_blank()) +
+  labs(y = "US Dollars")
+
+p
+```

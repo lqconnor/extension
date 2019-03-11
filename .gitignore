@@ -6,3 +6,5 @@ Python/
 *.csv
 *.png
 *.pdf
+*.html
+*.docx
