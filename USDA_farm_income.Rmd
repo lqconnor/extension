@@ -1,11 +1,7 @@
 ---
 title: "USDA Farm Income Forecasts"
 author: "Lawson Connor"
-<<<<<<< HEAD
 date: "March 20, 2018"
-=======
-date: "March 14, 2018"
->>>>>>> report
 output: 
  html_document:
     reference_html: default
@@ -15,8 +11,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-<<<<<<< HEAD
 The USDA released its projections for 2019 national farm incomes on March 6^th^. The forecasts say that the USDA expects an increase in farm incomes for the 2019 calendar year.State level estiamtes for 2018 are expected in August of 2018 and estimates for the 2019 year will be released in August of 2020. The national picture does give some insight into the expected performance of the Louisiana farm economy this year. 
 
 
@@ -25,7 +19,7 @@ The USDA farm income forecasts show that national farm incomes are expected to i
 
 ```{r, include = FALSE}
 source("fm_income.R")
-=======
+```
 The USDA released its projections for 2019 national farm incomes on March 6^th^. The forecasts say that the USDA expects an increase in farm incomes for the 2019 calendar year.State level estimates for 2018 are expected in August of 2018 and estimates for the 2019 year will be released in August of 2020. The national picture does give some insight into the expected performance of the Louisiana farm economy this year. 
 
 
@@ -41,7 +35,6 @@ fm_inc <- read_csv("../Data/farmincome_wealthstatisticsdata_march2019.csv") %>%
   rename(gdp_df = ChainType_GDP_Deflator) %>%
   mutate(Income = Amount/gdp_df) %>%
   mutate(year = as.Date(as.character(Year), format = "%Y"))
->>>>>>> report
 ```
 
 ```{r, echo=FALSE}
@@ -49,9 +42,6 @@ fm_inc <- filter(fm_inc, Year >= 2010)
 
 ggplot() +
   geom_line(data = fm_inc, aes(x=year, y=Income, group = 1), color = "black")
-<<<<<<< HEAD
-```
-=======
 ```
 
 Cash receipts for corn, cotton, rice grain sorghum and wheat are all expecting increased receipts in 2019 compared to 2018. Among crop commodities the, the USDA forecasts corn to have the highest increase in cash receipts with cotton seeing the second highest percentage increase. Soybeans are predicted to have a reduction in receipts with sugar cane forecasts remaining stable.
@@ -132,4 +122,4 @@ Figure 4 shows the composition of receipts in Louisiana in 2017 and 2010. Crop c
 
 ### Expenses
 Interest rates, labor, total. 
->>>>>>> report
+
