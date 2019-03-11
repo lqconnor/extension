@@ -17,7 +17,7 @@ lapply(pckgs, FUN = function(x) {
 yr <- 1950
 yr_adj  <- yr-1
 
-deflator <- read_csv("../../Data/farmincome_wealthstatisticsdata_november2018.csv") %>%
+deflator <- read_csv("../Data/farmincome_wealthstatisticsdata_november2018.csv") %>%
   select(Year, ChainType_GDP_Deflator) %>%
   distinct() %>%
   filter(Year>= yr)

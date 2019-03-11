@@ -3,7 +3,7 @@ title: "Yield Varibility"
 author: "Lawson Connor"
 date: "December 20, 2018"
 output: 
-  word_document:
+  html_document:
     reference_docx: default
 ---
 

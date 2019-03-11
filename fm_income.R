@@ -15,12 +15,13 @@ lapply(pckgs, FUN = function(x) {
 })
 
 
-fm_inc <- read_csv("../../Data/farmincome_wealthstatisticsdata_november2018.csv") %>%
+fm_inc <- read_csv("../Data/farmincome_wealthstatisticsdata_march2019.csv") %>%
   filter(State == "US", 
          str_detect(VariableDescriptionTotal, "Net farm income$"),
          Year >= 1950) %>%
   rename(gdp_df = ChainType_GDP_Deflator) %>%
-  mutate(Income = Amount/gdp_df)
+  mutate(Income = Amount/gdp_df) %>%
+  mutate(year = as.Date(as.character(Year), format = "%Y"))
 
 ggplot() +
   geom_line(data = fm_inc, aes(x=Year, y=Income, group = 1), color = "black")

@@ -14,7 +14,7 @@ lapply(pckgs, FUN = function(x) {
   }
 })
 
-yr <- 1970
+yr <- 1950
 yr_adj  <- yr-1
 
 # Get and clean NASS API data -------------------------------------------------------------
