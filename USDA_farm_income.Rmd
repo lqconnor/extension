@@ -3,8 +3,8 @@ title: "USDA Farm Income Forecasts"
 author: "Lawson Connor"
 date: "March 14, 2018"
 output: 
- word_document:
-    reference_docx: default
+ html_document:
+    reference_html: default
 ---
 
 ```{r setup, include=FALSE}
