@@ -75,5 +75,42 @@ p
 ### Implications for Louisiana
 Figure 4 shows the composition of receipts in Louisiana in 2017 and 2010. Crop commodities have increased in importance in Louisiana since 2010. Soybeans have grown as a proportion of the Louisiana farm economy more so than any other crop. Among animal products, poultry revenues tend to dominate the revenue picture. As the USDA is projecting relatively stable outcomes for poulrty this year, growth in the Louisiana farm economy will largely depend on the performance of key crop commodities. The USDA projects growth for most of the major USDA crop commodities. The primary drivers that the USDA forecasts that encourages this change is growth in price of many commodities. Soybeans is predicted to buck the growth trend of the other commodities. However, growth in other commodities, such as corn, cotton and to some extent, rice, appear poised to offset the difference. 
 
+```{r, echo=FALSE}
+  pie = ggplot(LA_rcpts[[1]], aes(x="", y=Amount, fill=VariableDescriptionPart1)) + geom_bar(stat="identity", width=1)
+  
+  # Convert to pie (polar coordinates) and add labels
+  pie = pie + coord_polar("y", start=0) + geom_text(aes(label = paste0(prop, "%")), position = position_stack(vjust = 0.5), color = "white")
+  
+  # Add color scale (hex colors)
+  pie = pie + scale_fill_manual(values=c("#55DDE0", "#33658A", "#2F4858", "#F6AE2D", "#F26419", "#999999", 	"#008B8B", "#0000CD", "#A52A2A")) 
+  
+  # Remove labels and add title
+  pie = pie + labs(x = NULL, y = NULL, fill = NULL, title = str_c("Louisiana Cash Receipts Composition in", " 2010"))
+  
+  # Tidy up the theme
+  pie + theme_classic() + theme(axis.line = element_blank(),
+                                axis.text = element_blank(),
+                                axis.ticks = element_blank(),
+                                plot.title = element_text(hjust = 0.5, color = "#666666"))
+  
+  
+  pie = ggplot(LA_rcpts[[2]], aes(x="", y=Amount, fill=VariableDescriptionPart1)) + geom_bar(stat="identity", width=1)
+  
+  # Convert to pie (polar coordinates) and add labels
+  pie = pie + coord_polar("y", start=0) + geom_text(aes(label = paste0(prop, "%")), position = position_stack(vjust = 0.5), color = "white")
+  
+  # Add color scale (hex colors)
+  pie = pie + scale_fill_manual(values=c("#55DDE0", "#33658A", "#2F4858", "#F6AE2D", "#F26419", "#999999", 	"#008B8B", "#0000CD", "#A52A2A")) 
+  
+  # Remove labels and add title
+  pie = pie + labs(x = NULL, y = NULL, fill = NULL, title = str_c("Louisiana Cash Receipts Composition in", " 2017"))
+  
+  # Tidy up the theme
+  pie + theme_classic() + theme(axis.line = element_blank(),
+                                axis.text = element_blank(),
+                                axis.ticks = element_blank(),
+                                plot.title = element_text(hjust = 0.5, color = "#666666"))
+```
+
 ### Expenses
 Interest rates, labor, total. 
