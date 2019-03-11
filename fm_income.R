@@ -91,31 +91,3 @@ ggplot(income, aes(x = year, y = Amount,
 ggplot() +
   geom_line(data = debt, aes(x=Year, y=Amount, group = 1), color = "black")
 geom_line(data = debt, aes(x=Year, y=Amount, group = 1), color = "black")
-
-# # Pie Charts -----------------------------------
-# 
-# # Create a basic bar
-# receipts <- filter(fm_inc,State == "LA", 
-#                    str_detect(VariableDescriptionTotal, "[Rr]eceipts"),
-#                    #str_detect(VariableDescriptionTotal, "corn|soybeans|cotton ,|rice|for sugar|sorghum|wheat"),
-#                    #VariableDescriptionPart1 == "Farm sector debt",
-#                    VariableDescriptionPart2 == "All",
-#                    Year <= 2017)
-# 
-# pie = ggplot(insnc, aes(x="", y=s_psld, fill=inspln_abbrv)) + geom_bar(stat="identity", width=1)
-# 
-# # Convert to pie (polar coordinates) and add labels
-# pie = pie + coord_polar("y", start=0) + geom_text(aes(label = paste0(prop, "%")), position = position_stack(vjust = 0.5), color = "white")
-# 
-# # Add color scale (hex colors)
-# pie = pie + scale_fill_manual(values=c("#55DDE0", "#33658A", "#2F4858", "#F6AE2D", "#F26419", "#999999")) 
-# 
-# # Remove labels and add title
-# pie = pie + labs(x = NULL, y = NULL, fill = NULL, title = "Statewide Insurance Plan Use")
-# 
-# # Tidy up the theme
-# pie + theme_classic() + theme(axis.line = element_blank(),
-#                               axis.text = element_blank(),
-#                               axis.ticks = element_blank(),
-#                               plot.title = element_text(hjust = 0.5, color = "#666666"))
-
