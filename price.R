@@ -14,22 +14,23 @@ lapply(pckgs, FUN = function(x) {
   }
 })
 
-yr <- 1950
+yr <- 2014
 yr_adj  <- yr-1
 
-deflator <- read_csv("../Data/farmincome_wealthstatisticsdata_november2018.csv") %>%
+deflator <- read_csv("../Data/farmincome_wealthstatisticsdata_march2019.csv") %>%
   select(Year, ChainType_GDP_Deflator) %>%
   distinct() %>%
   filter(Year>= yr)
 
 # Get and clean NASS API data -------------------------------------------------------------
 # List parameters of interest to feed to rnassqs package
-svy_yr = c(yr:2017)
+svy_yr = c(yr:2018)
 params = list(source_desc = "SURVEY", 
               state_alpha = "US",
               year = svy_yr,
-              reference_period_desc = c("MARKETING YEAR"),
-              freq_desc = "ANNUAL",
+              #reference_period_desc = c("YEAR"),
+              prodn_practice_desc = "ALL PRODUCTION PRACTICES",
+              freq_desc = "MONTHLY",
               sector_desc = "CROPS")
 
 # Commodities and values of interest
@@ -48,7 +49,7 @@ price <- nassqs(params = params) %>%
   left_join(deflator, by = c("year" = "Year")) %>%
   rename(gdp_df = ChainType_GDP_Deflator)
 
-y_2017 <- filter(price,year == 2017, str_detect(short_desc, "CORN")) %>%
+y_2017 <- filter(price,year == 2018, str_detect(short_desc, "CORN")) %>%
   select(gdp_df) %>%
   pull(gdp_df)
 
@@ -77,11 +78,11 @@ price <- separate(price, short_desc, into = c("commodity", "description"), sep =
          t2 = t^2)
 
 # This is to try to generate the scaled yield data ----------------------------------------------
-p_c_2017 <- filter(price,year == 2017) %>%
+p_c_2017 <- filter(price,year == 2018) %>%
   select(corn) %>%
   pull(corn)
 
-p_s_2017 <- filter(price,year == 2017) %>%
+p_s_2017 <- filter(price,year == 2018) %>%
   select(soybeans) %>%
   pull(soybeans)
 
@@ -96,7 +97,7 @@ ggplot() +
   geom_line(data = price, aes(x=year, y=dtrnd_c, group = 1), color = "black")
 
 ggplot() +
-  geom_line(data = price, aes(x=year, y=dtrnd_s, group = 1), color = "black")
+  geom_line(data = price, aes(x=year, y=soybeans, group = 1), color = "black")
 
 # Time series estimations -----------------------------------------------
 # Pre 1994
