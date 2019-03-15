@@ -79,11 +79,19 @@ price1 <- separate(price, short_desc, into = c("commodity", "description"), sep 
   unite(month, reference_period_desc, year, sep = "-", remove = FALSE)
 
 # This is to try to generate the scaled yield data ----------------------------------------------
+<<<<<<< HEAD
 p_c_2017 <- filter(price1,month == "DEC-2018") %>%
   select(corn) %>%
   pull(corn)
 
 p_s_2017 <- filter(price1,month == "DEC-2018") %>%
+=======
+p_c_2017 <- filter(price,year == 2018) %>%
+  select(corn) %>%
+  pull(corn)
+
+p_s_2017 <- filter(price,year == 2018) %>%
+>>>>>>> 16783d10493e2240c114595e4ae9d5308efe4f69
   select(soybeans) %>%
   pull(soybeans)
 
@@ -98,7 +106,11 @@ ggplot() +
   geom_line(data = price1, aes(x=month, y=corn, group = 1), color = "black")
 
 ggplot() +
+<<<<<<< HEAD
   geom_line(data = price1, aes(x=month, y=soybeans, group = 1), color = "black")
+=======
+  geom_line(data = price, aes(x=year, y=soybeans, group = 1), color = "black")
+>>>>>>> 16783d10493e2240c114595e4ae9d5308efe4f69
 
 # Time series estimations -----------------------------------------------
 # Pre 1994
