@@ -15,7 +15,7 @@ lapply(pckgs, FUN = function(x) {
 })
 
 
-fm_inc <- read_csv("../../Data/farmincome_wealthstatisticsdata_november2018.csv")
+fm_inc <- read_csv("../Data/farmincome_wealthstatisticsdata_march2019.csv")
 
 # debt -----------------------------------
 debt <- filter(fm_inc,State == "US", 
@@ -30,7 +30,7 @@ pmdi_files <- c(2016:2004)
 
 # read files into dataframe list
 pdmi <- pmdi_files %>%
-  map(~read_csv(str_c("../../Data/palmer/pmdi_", . ,".txt")))
+  map(~read_csv(str_c("../Data/palmer/pmdi_", . ,".txt")))
 
 # Take dataframe list and concatenate by row
 pdmi <- bind_rows(pdmi) %>%
